@@ -44,6 +44,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HelloComposeForm(){
     var name by remember { mutableStateOf("") }
+    var birthday by remember { mutableStateOf("") }
     Scaffold (
         topBar = {
             TopAppBar(title = {Text("Hola ESAN")})
@@ -60,14 +61,15 @@ fun HelloComposeForm(){
                 onValueChange = {name = it},
                 label = {Text("Nombre")}
             )
+            OutlinedTextField(
+                value = birthday,
+                onValueChange = {birthday = it},
+                label = {Text("Cumpleaños")}
+            )
             Button(
                 onClick = {},
-                enabled = name.isNotEmpty(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.secondary
-                )
-
-
+                enabled = name.isNotEmpty() && birthday.isNotEmpty(),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
             ) {
                 Text("Enviar")
             }
